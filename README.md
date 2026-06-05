@@ -1,1 +1,1 @@
-# SQL-pratice
+# SQL-practice
