@@ -1,0 +1,181 @@
+1. Display employee names and department names.
+
+SELECT E.ENAME, D.DNAME FROM EMP E INNER JOIN DEPT D ON E.DEPTNO = D.DEPTNO;
+
+ENAME      DNAME
+---------- --------------
+SMITH      RESEARCH
+ALLEN      SALES
+WARD       SALES
+JONES      RESEARCH
+MARTIN     SALES
+BLAKE      SALES
+CLARK      ACCOUNTING
+SCOTT      RESEARCH
+KING       ACCOUNTING
+TURNER     SALES
+ADAMS      RESEARCH
+JAMES      SALES
+FORD       RESEARCH
+MILLER     ACCOUNTING
+
+14 rows selected.
+
+2. Display employee names and department locations.
+
+SELECT E.ENAME, D.LOC FROM EMP E INNER JOIN DEPT D ON E.DEPTNO = D.DEPTNO;
+
+ENAME      LOC
+---------- -------------
+SMITH      DALLAS
+ALLEN      CHICAGO
+WARD       CHICAGO
+JONES      DALLAS
+MARTIN     CHICAGO
+BLAKE      CHICAGO
+CLARK      NEW YORK
+SCOTT      DALLAS
+KING       NEW YORK
+TURNER     CHICAGO
+ADAMS      DALLAS
+JAMES      CHICAGO
+FORD       DALLAS
+MILLER     NEW YORK
+
+14 rows selected.
+
+3. Display employee number, employee name, and department name.
+
+SELECT E.EMPNO, E.ENAME, D.DNAME FROM EMP E INNER JOIN DEPT D ON D.DEPTNO = E.DEPTNO;
+
+     EMPNO ENAME      DNAME
+---------- ---------- --------------
+      7369 SMITH      RESEARCH
+      7499 ALLEN      SALES
+      7521 WARD       SALES
+      7566 JONES      RESEARCH
+      7654 MARTIN     SALES
+      7698 BLAKE      SALES
+      7782 CLARK      ACCOUNTING
+      7788 SCOTT      RESEARCH
+      7839 KING       ACCOUNTING
+      7844 TURNER     SALES
+      7876 ADAMS      RESEARCH
+      7900 JAMES      SALES
+      7902 FORD       RESEARCH
+      7934 MILLER     ACCOUNTING
+
+14 rows selected.
+
+
+4. Display all employees working in the SALES department
+
+SELECT E.ENAME, D.DNAME FROM EMP E INNER JOIN DEPT D ON E.DEPTNO = D.DEPTNO WHERE DNAME  = 'SALES';
+
+ENAME      DNAME
+---------- --------------
+ALLEN      SALES
+WARD       SALES
+MARTIN     SALES
+BLAKE      SALES
+TURNER     SALES
+JAMES      SALES
+
+6 rows selected.
+
+5. Display employee names and department names ordered by employee name.
+
+SELECT E.ENAME, D.DNAME FROM EMP E INNER JOIN DEPT D ON E.DEPTNO = D.DEPTNO ORDER BY E.ENAME;
+
+ENAME      DNAME
+---------- --------------
+ADAMS      RESEARCH
+ALLEN      SALES
+BLAKE      SALES
+CLARK      ACCOUNTING
+FORD       RESEARCH
+JAMES      SALES
+JONES      RESEARCH
+KING       ACCOUNTING
+MARTIN     SALES
+MILLER     ACCOUNTING
+SCOTT      RESEARCH
+SMITH      RESEARCH
+TURNER     SALES
+WARD       SALES
+
+14 rows selected.
+
+6. Display employees whose commission is NULL along with department names.
+
+ SELECT E.ENAME, E.COMM, D.DNAME FROM EMP E INNER JOIN DEPT D ON D.DEPTNO = E.DEPTNO WHERE COMM IS NULL;
+
+ENAME            COMM DNAME
+---------- ---------- --------------
+SMITH                 RESEARCH
+JONES                 RESEARCH
+BLAKE                 SALES
+CLARK                 ACCOUNTING
+SCOTT                 RESEARCH
+KING                  ACCOUNTING
+ADAMS                 RESEARCH
+JAMES                 SALES
+FORD                  RESEARCH
+MILLER                ACCOUNTING
+
+10 rows selected.
+
+7.  Display department names having more than 3 employees.
+
+SELECT COUNT(*), D.DNAME FROM EMP E INNER JOIN DEPT D ON E.DEPTNO = D.DEPTNO GROUP BY D.DNAME  HAVING COUNT(*) > 3;
+
+  COUNT(*) DNAME
+---------- --------------
+         5 RESEARCH
+         6 SALES
+
+
+8. Display locations and total salary.
+
+ SELECT SUM(SAL), D.LOC FROM EMP E INNER JOIN DEPT D ON E.DEPTNO = D.DEPTNO GROUP BY D.LOC;
+
+  SUM(SAL) LOC
+---------- -------------
+      8750 NEW YORK
+      9400 CHICAGO
+     10875 DALLAS
+
+9. Display employee name and manager name.
+
+SELECT E.ENAME AS EMPLOYEE, M.ENAME AS MANAGER FROM EMP E JOIN EMP M ON E.MGR = M.EMPNO;
+
+EMPLOYEE   MANAGER
+---------- ----------
+SMITH      FORD
+ALLEN      BLAKE
+WARD       BLAKE
+JONES      KING
+MARTIN     BLAKE
+BLAKE      KING
+CLARK      KING
+SCOTT      JONES
+TURNER     BLAKE
+ADAMS      SCOTT
+JAMES      BLAKE
+FORD       JONES
+MILLER     CLARK
+
+13 rows selected.
+ 
+10. Display employees who do not have managers.
+
+ SELECT ENAME FROM EMP WHERE MGR IS NULL;
+
+ENAME
+----------
+KING
+
+
+
+
+
