@@ -1,0 +1,107 @@
+1. Write a query to count the number of employees in each department.
+ SELECT COUNT(*), JOB FROM EMP GROUP BY JOB;
+
+  COUNT(*) JOB
+---------- ---------
+         4 CLERK
+         4 SALESMAN
+         1 PRESIDENT
+         3 MANAGER
+         2 ANALYST
+
+2. Write a query to display the lowest salary for each job.
+ SELECT MIN(SAL), JOB FROM EMP GROUP BY JOB ;
+
+  MIN(SAL) JOB
+---------- ---------
+       800 CLERK
+      1250 SALESMAN
+      5000 PRESIDENT
+      2450 MANAGER
+      3000 ANALYST
+
+3. Write a query to display the total commission department-wise.
+SELECT SUM(E.COMM), D.DNAME  FROM (EMP E INNER JOIN DEPT D ON E.DEPTNO = D.DEPTNO) GROUP BY D.DNAME;
+
+SUM(E.COMM) DNAME
+----------- --------------
+            ACCOUNTING
+            RESEARCH
+       2200 SALES
+
+4. Write a query to display departments having more than 3 employees.
+ SELECT COUNT(*),  D.DNAME FROM ( EMP E INNER JOIN DEPT D ON E.DEPTNO = D.DEPTNO) GROUP BY D.DNAME HAVING COUNT(*) >3;
+
+  COUNT(*) DNAME
+---------- --------------
+         5 RESEARCH
+         6 SALES
+  
+5. Write a query to display jobs where the maximum salary is greater than 4000.
+ SELECT MAX(SAL), JOB FROM EMP GROUP BY JOB HAVING MAX(SAL)>4000;
+
+  MAX(SAL) JOB
+---------- ---------
+      5000 PRESIDENT
+
+6. Write a query to display the department name (DNAME) and total salary of employees in that department.
+ SELECT SUM(E.SAL), D.DNAME FROM EMP E INNER JOIN DEPT D ON E.DEPTNO = D.DEPTNO GROUP BY D.DNAME;
+
+SUM(E.SAL) DNAME
+---------- --------------
+      8750 ACCOUNTING
+     10875 RESEARCH
+      9400 SALES
+
+  
+7. Write a query to display the department name and number of employees working in each department.
+SELECT COUNT(*), D.DNAME FROM EMP E INNER JOIN DEPT D ON E.DEPTNO = D.DEPTNO GROUP BY D.DNAME;
+
+  COUNT(*) DNAME
+---------- --------------
+         3 ACCOUNTING
+         5 RESEARCH
+         6 SALES
+
+8. Find the second highest average salary department-wise.
+SELECT AVG(SAL),DEPTNO FROM EMP WHERE SAL<
+  2  (SELECT AVG(SAL) FROM EMP ) GROUP BY DEPTNO;
+
+  AVG(SAL)     DEPTNO
+---------- ----------
+      1310         30
+       950         20
+      1300         10
+
+
+
+
+    
+  
+9. Display the department with the highest total salary
+SELECT MAX(E.SAL), D.DNAME FROM EMP E INNER JOIN DEPT D ON E.DEPTNO = D.DEPTNO GROUP BY D.DNAME;
+
+MAX(E.SAL) DNAME
+---------- --------------
+      5000 ACCOUNTING
+      3000 RESEARCH
+      2850 SALES
+  
+10.Write a query to display the number of employees hired in each year.
+ SELECT COUNT(*), TO_CHAR(HIREDATE,'YYYY') FROM EMP GROUP BY TO_CHAR(HIREDATE,'YYYY');
+
+  COUNT(*) TO_C
+---------- ----
+         2 1987
+         1 1980
+         1 1982
+        10 1981
+
+
+
+
+
+
+
+
+    
